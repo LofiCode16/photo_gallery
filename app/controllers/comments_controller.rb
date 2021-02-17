@@ -1,12 +1,13 @@
 class CommentsController < ApplicationController
   def create
+    @photo = Photo.find(params[:comment][:photo_id])
     @comment = Comment.new(comment_params)
     @comment.user = current_user
 
     if @comment.save
-      redirect_to photo_path(params[:comment][:photo_id]), notice: 'comentario añadido'
+      redirect_to photo_path(@photo), notice: 'comentario añadido'
     else
-      redirect_to photo_path(params[:comment][:photo_id]), alert: 'no se pudo guardar el comentario'
+      redirect_to photo_path(@photo), alert: 'no se pudo guardar el comentario'
     end
   end
 
