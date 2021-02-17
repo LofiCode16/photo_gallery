@@ -11,6 +11,8 @@ class PhotosController < ApplicationController
   end
 
   def show
+    @comments = Comment.where(photo_id: @photo.id)
+    @comment = Comment.new
   end
 
   def new
