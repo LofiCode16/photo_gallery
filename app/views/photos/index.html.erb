@@ -12,9 +12,9 @@
     <tbody>
         <% @photos.each do |photo| %>
             <tr>
-                <td><%= image_tag photo.image_url, size: '240x120' %></td>
+                <td><%= image_tag photo.image_url, size: '200x120' %></td>
                 <td><%= photo.title %></td>
-                <td><%= photo.user %></td>
+                <td><%= photo.user.nickname %></td>
                 <td><%= link_to  "show", photo %></td>
 
                 <% if photo.user == current_user %>

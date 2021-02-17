@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
 
   def index
     if user_signed_in?
-      @photos = Photos.all
+      @photos = Photo.all
     else
       @photos = Photo.last_10_photos
     end

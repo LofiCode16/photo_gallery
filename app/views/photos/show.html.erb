@@ -4,6 +4,6 @@
     <%= image_tag @photo.image_url, size: '600x400' %>
 </div>
 
-<h3>owner: <%= @photo.user.capitalize %></h3>
+<h3>owner: <%= @photo.user.nickname.capitalize %></h3>
 
 <%= link_to  "Back", root_path %>
