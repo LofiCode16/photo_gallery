@@ -6,4 +6,28 @@
 
 <h3>owner: <%= @photo.user.capitalize %></h3>
 
+
+<h3>Comments</h3>
+
+<%= form_with(model: @comment, local: true ) do |f|%>
+    <%= f.hidden_field :photo_id, value: @photo.id %>
+
+    <div>
+        <%= f.text_area :content %>
+    </div>
+
+    <%= f.submit %>
+<% end %>
+
+<% if @comments.nil? %>
+    <p>no hay comentarios</p>
+<% else %>
+    <ul>
+        <% @comments.each do |comment| %>
+            <li><%= comment.content %> <span>(<%= comment.user.nickname %>)</span> <%= link_to  "delete", comment if comment.user == current_user%></li>  
+
+        <% end %>
+    </ul>
+<% end %>
+
 <%= link_to  "Back", root_path %>
