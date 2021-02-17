@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_action :authenticate_user!, except: :index
+  before_action :set_photo, only: %i[show]
 
   def index
     if user_signed_in?
@@ -14,5 +15,10 @@ class PhotosController < ApplicationController
 
   def new
   
+  end
+
+  private
+  def set_photo
+    @photo = Photo.find(params[:id])
   end
 end

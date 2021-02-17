@@ -1,2 +1,9 @@
-<h1>Photos#show</h1>
-<p>Find me in app/views/photos/show.html.erb</p>
+<h1>Photo <%= @photo.title.capitalize %></h1>
+
+<div>
+    <%= image_tag @photo.image_url, size: '600x400' %>
+</div>
+
+<h3>owner: <%= @photo.user.capitalize %></h3>
+
+<%= link_to  "Back", root_path %>
