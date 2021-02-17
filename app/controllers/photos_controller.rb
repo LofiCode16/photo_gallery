@@ -14,11 +14,26 @@ class PhotosController < ApplicationController
   end
 
   def new
-  
+    @photo = Photo.new
+  end
+
+  def create
+    @photo = Photo.new(photo_params)
+    @photo.user = current_user
+
+    if @photo.save
+      redirect_to root_path, notice: 'foto añadida!'
+    else
+      redirect_to new_photo_path, alert: 'no se pudo crear la foto'
+    end
   end
 
   private
   def set_photo
     @photo = Photo.find(params[:id])
+  end
+
+  def photo_params
+    params.require(:photo).permit(:title, :image_url)
   end
 end
