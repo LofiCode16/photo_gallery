@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_photo, only: %i[show]
+  before_action :set_photo, only: %i[show destroy]
 
   def index
     if user_signed_in?
@@ -26,6 +26,11 @@ class PhotosController < ApplicationController
     else
       redirect_to new_photo_path, alert: 'no se pudo crear la foto'
     end
+  end
+
+  def destroy
+    @photo.destroy
+    redirect_to root_path, notice: 'foto eliminada'
   end
 
   private
