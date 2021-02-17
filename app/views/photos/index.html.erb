@@ -1,2 +1,26 @@
-<h1>Photos#index</h1>
-<p>Find me in app/views/photos/index.html.erb</p>
+<h1>Photos</h1>
+
+<%= link_to  "New photo", new_photo_path if user_signed_in? %>
+
+<table>
+    <thead>
+        <th>image</th>
+        <th>title</th>
+        <th>owner</th>
+    </thead>
+
+    <tbody>
+        <% @photos.each do |photo| %>
+            <tr>
+                <td><%= image_tag photo.image_url, size: '240x120' %></td>
+                <td><%= photo.title %></td>
+                <td><%= photo.user %></td>
+                <td><%= link_to  "show", photo %></td>
+
+                <% if photo.user == current_user %>
+                    <td><%= link_to  "delete", photo, method: :delete %></td>
+                <% end %>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
